@@ -11,7 +11,7 @@ from homeassistant.core import HomeAssistant
 from carconnectivity import CarConnectivity
 import carconnectivity_connector_volkswagen
 
-DOMAIN = "volkswagen_we_connect_id"
+DOMAIN = "ha_car_connectivity"
 
 _LOGGER = logging.getLogger(__name__)
 
