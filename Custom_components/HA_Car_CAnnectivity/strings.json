@@ -1,0 +1,18 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Logga in på Volkswagen",
+        "description": "Ange ditt Volkswagen ID",
+        "data": {
+          "username": "Användarnamn",
+          "password": "Lösenord"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Kunde inte logga in",
+      "unknown": "Okänt fel"
+    }
+  }
+}
