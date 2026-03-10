@@ -1,7 +1,7 @@
 {
   "domain": "ha_car_connectivity",
   "name": "HA Car Connectivity",
-  "versio": "0.31",
+  "versio": "0.32",
   "config_flow": true,
   "requirements": [
     "carconnectivity>=0.9",
