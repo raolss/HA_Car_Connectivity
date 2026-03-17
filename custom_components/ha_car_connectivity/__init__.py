@@ -11,7 +11,19 @@ from carconnectivity.carconnectivity import CarConnectivity
 import carconnectivity_connectors.volkswagen
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
-    config = entry.data
+    #config = entry.data
+
+    config = {
+    "connectors": {
+        "vw": {
+            "type": "volkswagen",
+            "config": {
+                "username": entry.data["username"],
+                "password": entry.data["password"],
+                },
+            }
+        }
+    }    
 
     # Kör blocking init i executor
     cc = await hass.async_add_executor_job(
