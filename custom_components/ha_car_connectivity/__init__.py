@@ -14,18 +14,16 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     #config = entry.data
 
     config = {
-        "carConnectivity": {
-            "connectors": [
-                {
-                    "type": "volkswagen",
-                    "config": {
-                        "username": entry.data["username"],
-                        "password": entry.data["password"],
-                    },
-                }
-            ]
+        "connectors": {
+            "vw": {
+                "type": "volkswagen",
+                "config": {
+                    "username": entry.data["username"],
+                    "password": entry.data["password"],
+                },
+            }
         }
-    }    
+    }   
 
     # Kör blocking init i executor
     cc = await hass.async_add_executor_job(
