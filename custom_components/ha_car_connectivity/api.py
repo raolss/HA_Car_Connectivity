@@ -1,4 +1,4 @@
-from carconnectivity_connector.volkswagen import VolkswagenConnector
+from carconnectivity_connector.volkswagen.volkswagen_connector import VolkswagenConnector
 from carconnectivity.carconnectivity import CarConnectivity
 
 class CarConnectivityAPI:
