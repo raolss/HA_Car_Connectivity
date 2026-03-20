@@ -19,5 +19,9 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             data_schema=vol.Schema({
                 vol.Required("username"): str,
                 vol.Required("password"): str,
+                vol.Optional("country", default="SE"): str,
+                vol.Optional("brand", default="VW"): str,
+                vol.Optional("region", default="emea"): str,
+
             }),
         )
