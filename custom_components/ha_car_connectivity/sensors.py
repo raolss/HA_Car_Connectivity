@@ -27,6 +27,47 @@ async def async_setup_entry(hass, entry, async_add_entities):
 
     async_add_entities(entities)
 
+class CarConnectivityBaseSensor(SensorEntity):
+    def __init__(self, api, vehicle):
+        self.api = api
+        self.vehicle = vehicle
+        self.vin = vehicle["vin"]
+
+    @property
+    def device_info(self) -> DeviceInfo:
+        return DeviceInfo(
+            identifiers={(DOMAIN, self.vin)},
+            name=self.vehicle.get("name", f"Vehicle {self.vin}"),
+            manufacturer=self.vehicle.get("brand", "Volkswagen"),
+            model=self.vehicle.get("model", "Unknown model"),
+            sw_version=self.vehicle.get("softwareVersion"),
+        )
+
+
+class CarBatterySensor(CarConnectivityBaseSensor):
+    _attr_name = "Battery Level"
+    _attr_native_unit_of_measurement = PERCENTAGE
+
+    async def async_update(self):
+        data = await self.api.get_vehicle_status(self.vin)
+        self._attr_native_value = data["battery"]["level"]
+
+
+class CarRangeSensor(CarConnectivityBaseSensor):
+    _attr_name = "Range"
+    _attr_native_unit_of_measurement = "km"
+
+    async def async_update(self):
+        data = await self.api.get_vehicle_status(self.vin)
+        self._attr_native_value = data["range"]["km"]
+
+
+class CarDoorLockSensor(CarConnectivityBaseSensor):
+    _attr_name = "Door Lock Status"
+
+    async def async_update(self):
+        data = await self.api.get_vehicle_status(self.vin)
+        self._attr_native_value = "Locked" if data["doors"]["locked"] else "Unlocked"
 
 
 """
