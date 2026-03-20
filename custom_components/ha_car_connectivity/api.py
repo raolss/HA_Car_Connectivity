@@ -1,5 +1,15 @@
 from carconnectivity.carconnectivity import CarConnectivity
-from carconnectivity_connector.volkswagen.volkswagen_connector import VolkswagenConnector
+import logging
+
+_LOGGER = logging.getLogger(__name__)
+
+try:
+    from carconnectivity_connector.volkswagen.volkswagen_connector import VolkswagenConnector
+    _LOGGER.warning("VolkswagenConnector import OK")
+except Exception as e:
+    _LOGGER.error("Import failed: %s", e)
+
+#from carconnectivity_connector.volkswagen.volkswagen_connector import VolkswagenConnector
 
 class CarConnectivityAPI:
     def __init__(self, entry_data):
