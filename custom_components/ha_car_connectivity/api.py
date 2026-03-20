@@ -4,7 +4,7 @@ import logging
 _LOGGER = logging.getLogger(__name__)
 
 try:
-    from carconnectivity_connector.volkswagen.volkswagen_connector import VolkswagenConnector
+    from carconnectivity_connector_volkswagen.volkswagen_connector import VolkswagenConnector
     _LOGGER.warning("VolkswagenConnector import OK")
 except Exception as e:
     _LOGGER.error("Import failed: %s", e)
