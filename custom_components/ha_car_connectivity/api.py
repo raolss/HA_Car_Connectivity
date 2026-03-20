@@ -43,7 +43,7 @@ class CarConnectivityAPI:
         _LOGGER.warning("Initializing CarConnectivity")
 
         self.cc = await self.hass.async_add_executor_job(
-                CarConnectivity, self.config
+            CarConnectivity, self.config
         )
 
         # Hämta connectorn
@@ -51,13 +51,12 @@ class CarConnectivityAPI:
 
     async def get_vehicles(self):
         if self.vehicles is None:
-             _LOGGER.warning("Fetching vehicles")
+            _LOGGER.warning("Fetching vehicles")
             
             self.vehicles = await self.hass.async_add_executor_job(
                 self.connector.get_vehicles
             )
 
-                   
 
         normalized = []
         for v in self.vehicles:
@@ -82,7 +81,8 @@ class CarConnectivityAPI:
 
         status = await self.hass.async_add_executor_job(
             vehicle.get_status
-
+        )
+        
         result = {}
 
         if hasattr(status, "battery_level"):
