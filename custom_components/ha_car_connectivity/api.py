@@ -80,7 +80,8 @@ class CarConnectivityAPI:
         if vehicle is None:
             return {}
 
-        status = await vehicle.get_status()
+        status = await self.hass.async_add_executor_job(
+            vehicle.get_status
 
         result = {}
 
